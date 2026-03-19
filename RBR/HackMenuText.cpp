@@ -72,6 +72,10 @@ static std::vector<PendingMenuText> g_pendingMenuTexts;
 
 static MenuTextDraw_t g_OriginalMenuTextDraw = nullptr;
 
+// EndScene hook to flush pending Chinese text each frame
+typedef HRESULT(WINAPI* EndScene_t)(IDirect3DDevice9*);
+static EndScene_t g_OriginalEndScene = nullptr;
+
 // Normalize INI key/value token:
 // - Trim leading/trailing whitespace
 // - If wrapped in double quotes, strip the outer quotes
@@ -307,6 +311,12 @@ int __cdecl Hook_MenuTextDraw(int* a1, int a2, int a3, char* a4, ...)
     return 0;
 }
 
+static HRESULT WINAPI Hook_EndScene(IDirect3DDevice9* pDevice)
+{
+    DrawPendingChineseMenuText();
+    return g_OriginalEndScene(pDevice);
+}
+
 void HookIRBRGameWriteText()
 {
     static bool hookInstalled = false;
@@ -382,6 +392,13 @@ void HookIRBRGameWriteText()
         if (MH_EnableHook(addr) != MH_OK) return;
     }
 
+    // Hook IDirect3DDevice9::EndScene (vtable slot 42) to flush pending text
+    if (g_pRBRIDirect3DDevice9) {
+        void** d3dVtable = *(void***)g_pRBRIDirect3DDevice9;
+        void* endSceneAddr = d3dVtable[42];
+        if (MH_CreateHook(endSceneAddr, &Hook_EndScene, (LPVOID*)&g_OriginalEndScene) != MH_OK) return;
+        if (MH_EnableHook(endSceneAddr) != MH_OK) return;
+    }
 }
 
 void UnhookIRBRGameWriteText()
@@ -394,6 +411,11 @@ void UnhookIRBRGameWriteText()
         LPVOID addr = (LPVOID)C_RBR_ADDR_TO_POINTER(0x4728F0);
         MH_DisableHook(addr);
         g_OriginalMenuTextDraw = nullptr;
+    }
+    if (g_OriginalEndScene) {
+        void** d3dVtable = *(void***)g_pRBRIDirect3DDevice9;
+        MH_DisableHook(d3dVtable[42]);
+        g_OriginalEndScene = nullptr;
     }
     if (g_pMenuTextFont) {
         g_pMenuTextFont->InvalidateDeviceObjects();
