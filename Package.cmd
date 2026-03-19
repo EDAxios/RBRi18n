@@ -2,7 +2,13 @@
 setlocal
 
 set PLUGIN_NAME=RBRi18n
-set VERSION=0.1.0
+
+:: Version from argument, or default
+if "%~1"=="" (
+    set VERSION=1.0.0
+) else (
+    set VERSION=%~1
+)
 set BUILD_DIR=Release
 set OUTPUT_DIR=Release\Package
 
