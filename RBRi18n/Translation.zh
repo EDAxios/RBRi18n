@@ -1093,3 +1093,33 @@ Start a new rally season?=开始新的拉力赛季
 Are you sure you want to start a new rally season?=你确定要开始一个新的拉力赛季吗？
 [ NO ]=否
 [ YES ]=是
+
+
+;Rally School
+Car:=车辆：
+Setup(gravel):=调校（砂石）：
+Setup(tarmac):=调校（柏油）：
+Start Rally School=开始拉力学校
+Back=后退
+
+Basic Driving=基础驾驶
+Advanced Technique=高级技术
+
+Start Up And Basic Controls=启动与基础控制
+Basic Driving and Changing Gear=基础驾驶与换挡
+Brake Test: Gravel=刹车测试：砂石
+Road Positioning and Gears=道路位置选择与挡位控制
+Qualification Trial=资格测试
+High Speed Passenger Ride=高速乘坐体验
+
+Handbrake Turn: Gravel=手刹转向：砂石路
+Oversteer: Left Foot Braking=转向过度：左脚刹车
+Oversteer: Throttle Control=转向过度：油门控制
+Powerslide=动力滑行
+Basic Handling: Tarmac=基础操控：柏油路
+Brake Test: Tarmac=刹车测试：柏油路
+Handbrake Turn: Tarmac=手刹转向：柏油路
+Soft Suspension=软悬挂
+Hard Suspension=硬悬挂
+Scandinavian Flick=斯堪的纳维亚钟摆
+Special Stage Trial=特殊赛段测试
