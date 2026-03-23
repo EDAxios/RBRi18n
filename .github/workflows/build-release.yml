@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*'
+    paths:
+      - 'RBRi18n/**'
 
 permissions:
   contents: write
