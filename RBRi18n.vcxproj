@@ -180,6 +180,7 @@
     <ClInclude Include="RBR\IRBRGame.h" />
     <ClInclude Include="RBR\RBRAPI.h" />
     <ClInclude Include="Utils\LogUtil.h" />
+    <ClInclude Include="Utils\json.hpp" />
     <ClInclude Include="Utils\SimpleIni.h" />
     <ClInclude Include="version.h" />
   </ItemGroup>

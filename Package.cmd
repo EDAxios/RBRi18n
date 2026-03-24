@@ -24,8 +24,8 @@ mkdir "%OUTPUT_DIR%\Plugins"
 mkdir "%OUTPUT_DIR%\%PLUGIN_NAME%"
 
 copy /y "%BUILD_DIR%\%PLUGIN_NAME%.dll" "%OUTPUT_DIR%\Plugins\"
-copy /y "%PLUGIN_NAME%\*.zh" "%OUTPUT_DIR%\%PLUGIN_NAME%\"
-copy /y "%PLUGIN_NAME%\*.en" "%OUTPUT_DIR%\%PLUGIN_NAME%\" 2>nul
+copy /y "%PLUGIN_NAME%\*" "%OUTPUT_DIR%\%PLUGIN_NAME%\"
+copy /y "%PLUGIN_NAME%\*" "%OUTPUT_DIR%\%PLUGIN_NAME%\" 2>nul
 
 pushd "%OUTPUT_DIR%"
 powershell -Command "Compress-Archive -Path 'Plugins','%PLUGIN_NAME%' -DestinationPath '..\%PLUGIN_NAME%-v%VERSION%.zip' -Force"

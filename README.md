@@ -9,7 +9,7 @@ A lightweight internationalization (i18n) plugin for **Richard Burns Rally (RBR)
 ## Features
 
 - Multi-language support via `Language=zh|en` setting
-- Per-plugin translation files (`RichardBurnsRally.zh`, `RallySimFans.hu.zh`, `SimRallyCN.zh`, etc.)
+- Per-plugin translation files (`RichardBurnsRally.zh.json`, `Weather.zh.json`, etc.)
 - Configurable font family and sizes
 - Resolution-aware font scaling (based on RBR's native 640×480)
 - Widescreen/ultrawide centering support
@@ -18,7 +18,7 @@ A lightweight internationalization (i18n) plugin for **Richard Burns Rally (RBR)
 
 1. Copy `RBRi18n.dll` to your RBR `Plugins` directory
 2. Create a `RBRi18n` folder in your RBR root directory
-3. Place translation files (`.zh`, `.en`, etc.) in the `RBRi18n` folder
+3. Place translation files (`.zh.json`, `.en.json`, etc.) in the `RBRi18n` folder
 
 ## Configuration
 
@@ -39,26 +39,27 @@ FontSizeMenu=8
 
 ## Translation Files
 
-Translation files use INI format with a `[Translations]` section. Files are named `{source}.{lang}`:
+Translation files use JSON format. Files are named `{source}.{lang}.json`:
 
 ```
 RBRi18n/
-├── RichardBurnsRally.zh    # Base game (Chinese)
-├── RichardBurnsRally.en    # Base game (English)
-├── RallySimFans.hu.zh      # RSF plugin (Chinese)
-├── SimRallyCN.zh           # SimRallyCN plugin (Chinese)
+├── RichardBurnsRally.zh.json  # Base game (Chinese)
+├── Weather.zh.json            # Weather translations (Chinese)
+├── Options.zh.json            # Options menu (Chinese)
+├── TuneCar.zh.json            # Car tuning (Chinese)
 └── ...
 ```
 
 Example translation file:
 
-```ini
-[Translations]
-Options=选项
-Quick Rally=快速拉力赛
+```json
+{
+  "Options": "选项",
+  "Quick Rally": "快速拉力赛"
+}
 ```
 
-All files matching the configured language extension are loaded and merged.
+All files matching `*.{lang}.json` are loaded and merged.
 
 ## Build from Source
 
@@ -80,7 +81,7 @@ Output: `Release/RBRi18n.dll`
 
 - RBR API memory addresses and structs derived from [RBRAPI by MIKA-N](https://github.com/mika-n) (MIT-like license, see `RBR/RBRAPI.h`)
 - [MinHook](https://github.com/TsudaKageworthy/minhook) for function hooking
-- [SimpleIni](https://github.com/brofield/simpleini) for INI parsing
+- [nlohmann/json](https://github.com/nlohmann/json) for JSON parsing
 
 ## License
 

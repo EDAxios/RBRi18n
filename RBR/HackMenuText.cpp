@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <filesystem>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <cstdarg>
@@ -10,9 +11,12 @@
 #include "MinHook.h"
 #include "RBRAPI.h"
 #include "IRBRGame.h"
+#include "../Utils/json.hpp"
 #include "../Utils/SimpleIni.h"
 #include "../DirectX/D3D9Font/D3DFont.h"
 #include "../Utils/LogUtil.h"
+
+using json = nlohmann::json;
 
 namespace fs = std::filesystem;
 
@@ -444,22 +448,18 @@ static void LoadTranslationFile(const fs::path& filePath)
 {
     if (!fs::exists(filePath)) return;
 
-    CSimpleIniCaseA simpleIni;
-    simpleIni.SetUnicode();
-    if (simpleIni.LoadFile(filePath.string().c_str()) != SI_OK) return;
+    std::ifstream ifs(filePath, std::ios::binary);
+    if (!ifs.is_open()) return;
 
-    CSimpleIniCaseA::TNamesDepend keys;
-    simpleIni.GetAllKeys("Translations", keys);
-
-    for (const auto& key : keys) {
-        const char* value = simpleIni.GetValue("Translations", key.pItem, "");
-        if (value && value[0]) {
-            std::string normKey = NormalizeIniToken(std::string(key.pItem ? key.pItem : ""));
-            std::string normVal = NormalizeIniToken(std::string(value));
-            if (!normKey.empty() && !normVal.empty()) {
-                g_translations[normKey] = normVal;
+    try {
+        json j = json::parse(ifs);
+        for (auto& [key, val] : j.items()) {
+            if (val.is_string() && !key.empty()) {
+                g_translations[key] = val.get<std::string>();
             }
         }
+    } catch (const json::exception& e) {
+        FormatLog("[i18n] Failed to parse %s: %s", filePath.string().c_str(), e.what());
     }
 }
 
@@ -491,14 +491,18 @@ void LoadTranslations()
         }
     }
 
-    // Load translation files: RBRi18n/*.{lang}
+    // Load translation files: RBRi18n/*.{lang}.json
     fs::path i18nDir = rootPath / "RBRi18n";
     if (!fs::exists(i18nDir)) return;
 
-    std::string ext = "." + lang;
+    std::string suffix = "." + lang + ".json";
     for (const auto& entry : fs::directory_iterator(i18nDir)) {
-        if (entry.is_regular_file() && entry.path().extension().string() == ext) {
-            LoadTranslationFile(entry.path());
+        if (entry.is_regular_file()) {
+            std::string filename = entry.path().filename().string();
+            if (filename.size() > suffix.size() &&
+                filename.compare(filename.size() - suffix.size(), suffix.size(), suffix) == 0) {
+                LoadTranslationFile(entry.path());
+            }
         }
     }
 }
