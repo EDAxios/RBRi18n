@@ -1,11 +1,14 @@
 ﻿#include "HackMenuText.h"
 #include <Windows.h>
+#include <urlmon.h>
+#pragma comment(lib, "urlmon.lib")
 #include <unordered_map>
 #include <unordered_set>
 #include <filesystem>
 #include <fstream>
 #include <string>
 #include <vector>
+#include <mutex>
 #include <cstdarg>
 #include <cstdio>
 #include "MinHook.h"
@@ -41,6 +44,7 @@ static void* g_SetMenuColorAddr  = nullptr;
 static void* g_SetColorAddr      = nullptr;
 
 static std::unordered_map<std::string, std::string> g_translations;
+static std::mutex g_translationsMutex;
 
 // One Chinese font per IRBRGame::EFonts value
 static CD3DFont* g_pChineseFonts[IRBRGame::FONT_HEADING + 1] = { nullptr, nullptr, nullptr, nullptr };
@@ -123,12 +127,17 @@ void __fastcall Hook_WriteText(IRBRGame* pThis, void* edx, float x, float y, con
 {
     if (ptxtText && g_OriginalWriteText) {
         std::string text(ptxtText);
-        auto it = g_translations.find(text);
-        if (it != g_translations.end()) {
-            int size = MultiByteToWideChar(CP_UTF8, 0, it->second.c_str(), -1, nullptr, 0);
+        std::string translated;
+        {
+            std::lock_guard<std::mutex> lock(g_translationsMutex);
+            auto it = g_translations.find(text);
+            if (it != g_translations.end()) translated = it->second;
+        }
+        if (!translated.empty()) {
+            int size = MultiByteToWideChar(CP_UTF8, 0, translated.c_str(), -1, nullptr, 0);
             if (size > 0) {
                 std::wstring wideText(size, 0);
-                MultiByteToWideChar(CP_UTF8, 0, it->second.c_str(), -1, &wideText[0], size);
+                MultiByteToWideChar(CP_UTF8, 0, translated.c_str(), -1, &wideText[0], size);
 
                 PendingText pt;
                 pt.x = x;
@@ -296,15 +305,18 @@ int __cdecl Hook_MenuTextDraw(int* a1, int a2, int a3, char* a4, ...)
     std::string key(utf8buf);
 
     std::wstring textToDraw;
-    auto it = g_translations.find(key);
-    if (it != g_translations.end()) {
-        int wsize = MultiByteToWideChar(CP_UTF8, 0, it->second.c_str(), -1, nullptr, 0);
-        if (wsize > 0) {
-            textToDraw.resize(wsize, L'\0');
-            MultiByteToWideChar(CP_UTF8, 0, it->second.c_str(), -1, &textToDraw[0], wsize);
+    {
+        std::lock_guard<std::mutex> lock(g_translationsMutex);
+        auto it = g_translations.find(key);
+        if (it != g_translations.end()) {
+            int wsize = MultiByteToWideChar(CP_UTF8, 0, it->second.c_str(), -1, nullptr, 0);
+            if (wsize > 0) {
+                textToDraw.resize(wsize, L'\0');
+                MultiByteToWideChar(CP_UTF8, 0, it->second.c_str(), -1, &textToDraw[0], wsize);
+            }
+        } else if (!key.empty() && g_loggedMisses.insert(key).second) {
+            FormatLog("[MenuText] Missing translation: %s", key.c_str());
         }
-    } else if (!key.empty() && g_loggedMisses.insert(key).second) {
-        FormatLog("[MenuText] Missing translation: %s", key.c_str());
     }
     if (textToDraw.empty()) {
         textToDraw = wbuf;
@@ -453,6 +465,7 @@ static void LoadTranslationFile(const fs::path& filePath)
 
     try {
         json j = json::parse(ifs);
+        std::lock_guard<std::mutex> lock(g_translationsMutex);
         for (auto& [key, val] : j.items()) {
             if (val.is_string() && !key.empty()) {
                 g_translations[key] = val.get<std::string>();
@@ -461,6 +474,97 @@ static void LoadTranslationFile(const fs::path& filePath)
     } catch (const json::exception& e) {
         FormatLog("[i18n] Failed to parse %s: %s", filePath.string().c_str(), e.what());
     }
+}
+
+// Load all *.{lang}.json files from a directory into g_translations
+static void LoadTranslationDir(const fs::path& dir, const std::string& suffix)
+{
+    if (!fs::exists(dir)) return;
+    for (const auto& entry : fs::directory_iterator(dir)) {
+        if (entry.is_regular_file()) {
+            std::string filename = entry.path().filename().string();
+            if (filename.size() > suffix.size() &&
+                filename.compare(filename.size() - suffix.size(), suffix.size(), suffix) == 0) {
+                LoadTranslationFile(entry.path());
+            }
+        }
+    }
+}
+
+// Background thread: fetch latest translation files from GitHub raw URL
+struct FetchCtx {
+    std::string repo;
+    std::string lang;
+    fs::path i18nDir;
+};
+
+static DWORD WINAPI FetchTranslationsThread(LPVOID param)
+{
+    // Delay to let the game start up
+    Sleep(5000);
+
+    std::unique_ptr<FetchCtx> ctx(static_cast<FetchCtx*>(param));
+
+    std::string suffix = "." + ctx->lang + ".json";
+
+    // Use GitHub API to list files in RBRi18n/ directory
+    std::string apiUrl = "https://api.github.com/repos/" + ctx->repo +
+                         "/contents/RBRi18n?ref=main";
+
+    // Download API response to a temp file
+    fs::path tmpApi = ctx->i18nDir / "_api_response.tmp";
+    HRESULT hr = URLDownloadToFileA(nullptr, apiUrl.c_str(), tmpApi.string().c_str(), 0, nullptr);
+    if (FAILED(hr)) {
+        FormatLog("[i18n] Failed to fetch file list from %s", apiUrl.c_str());
+        return 1;
+    }
+
+    // Parse the API response to get file names
+    std::vector<std::string> filesToFetch;
+    {
+        std::ifstream ifs(tmpApi, std::ios::binary);
+        if (ifs.is_open()) {
+            try {
+                json j = json::parse(ifs);
+                if (j.is_array()) {
+                    for (auto& item : j) {
+                        std::string name = item.value("name", "");
+                        if (name.size() > suffix.size() &&
+                            name.compare(name.size() - suffix.size(), suffix.size(), suffix) == 0) {
+                            std::string downloadUrl = item.value("download_url", "");
+                            if (!downloadUrl.empty())
+                                filesToFetch.push_back(downloadUrl);
+                        }
+                    }
+                }
+            } catch (...) {}
+        }
+    }
+    fs::remove(tmpApi);
+
+    if (filesToFetch.empty()) {
+        FormatLog("[i18n] No translation files found on remote");
+        return 0;
+    }
+
+    // Download each file and reload
+    int updated = 0;
+    for (const auto& url : filesToFetch) {
+        // Extract filename from URL
+        std::string filename = url.substr(url.rfind('/') + 1);
+        fs::path localPath = ctx->i18nDir / filename;
+
+        hr = URLDownloadToFileA(nullptr, url.c_str(), localPath.string().c_str(), 0, nullptr);
+        if (SUCCEEDED(hr)) {
+            LoadTranslationFile(localPath);
+            updated++;
+        } else {
+            FormatLog("[i18n] Failed to download %s", url.c_str());
+        }
+    }
+
+    FormatLog("[i18n] Remote update: %d file(s) refreshed", updated);
+    return 0;
 }
 
 void LoadTranslations()
@@ -491,18 +595,15 @@ void LoadTranslations()
         }
     }
 
-    // Load translation files: RBRi18n/*.{lang}.json
+    // Load cached local translation files immediately
     fs::path i18nDir = rootPath / "RBRi18n";
-    if (!fs::exists(i18nDir)) return;
-
+    if (!fs::exists(i18nDir)) fs::create_directories(i18nDir);
     std::string suffix = "." + lang + ".json";
-    for (const auto& entry : fs::directory_iterator(i18nDir)) {
-        if (entry.is_regular_file()) {
-            std::string filename = entry.path().filename().string();
-            if (filename.size() > suffix.size() &&
-                filename.compare(filename.size() - suffix.size(), suffix.size(), suffix) == 0) {
-                LoadTranslationFile(entry.path());
-            }
-        }
-    }
+    LoadTranslationDir(i18nDir, suffix);
+
+    // Spawn background thread to fetch latest from GitHub
+    auto* ctx = new FetchCtx{ "geekerlw/RBRi18n", lang, i18nDir };
+    HANDLE hThread = CreateThread(nullptr, 0, FetchTranslationsThread, ctx, 0, nullptr);
+    if (hThread) CloseHandle(hThread);
+    else delete ctx;
 }

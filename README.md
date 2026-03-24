@@ -9,7 +9,8 @@ A lightweight internationalization (i18n) plugin for **Richard Burns Rally (RBR)
 ## Features
 
 - Multi-language support via `Language=zh|en` setting
-- Per-plugin translation files (`RichardBurnsRally.zh.json`, `Weather.zh.json`, etc.)
+- Auto-update: fetches latest translation files from GitHub on game launch
+- Per-plugin translation files (`Translation.zh.json`, etc.)
 - Configurable font family and sizes
 - Resolution-aware font scaling (based on RBR's native 640×480)
 - Widescreen/ultrawide centering support
@@ -18,7 +19,7 @@ A lightweight internationalization (i18n) plugin for **Richard Burns Rally (RBR)
 
 1. Copy `RBRi18n.dll` to your RBR `Plugins` directory
 2. Create a `RBRi18n` folder in your RBR root directory
-3. Place translation files (`.zh.json`, `.en.json`, etc.) in the `RBRi18n` folder
+3. Translation files are downloaded automatically on first launch
 
 ## Configuration
 
