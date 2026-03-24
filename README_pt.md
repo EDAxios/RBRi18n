@@ -33,7 +33,7 @@ Adicione ao `RichardBurnsRally.ini` no diretório raiz do jogo:
 
 ```ini
 [RBRi18n]
-Language=zh
+Language=pt
 
 ; Configurações de fonte opcionais (valores padrão exibidos)
 FontFamily=SimHei
