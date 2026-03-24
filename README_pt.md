@@ -29,7 +29,7 @@ Um plugin leve de internacionalização (i18n) para **Richard Burns Rally (RBR)*
 
 ## Configuração
 
-Adicione ao `RichardBurnsRally.ini` no diretório raiz do jogo:
+O idioma padrão é o chinês. Para configurar um idioma diferente, adicione ao `RichardBurnsRally.ini` no diretório raiz do jogo:
 
 ```ini
 [RBRi18n]
