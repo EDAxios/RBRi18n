@@ -1872,5 +1872,9 @@
   "Good stuff.": "还不错。",
   "Are you sure you want to restart this exercise? ": "你确定要重新开始本次训练吗？",
   " All progress will be lost.": "将会失去所有进度",
+  "Conflict Detected": "检测到键位冲突",
+  "Conflict detected. You have assigned a button to more than one action. ": "你把多个不同的操作分配给了同一个键。",
+  "Press New Button": "按下要绑定的按键",
+  "Press ESCAPE to cancel.": "按ESC取消",
   " Select Profile": "请选择车手档案"
 }
