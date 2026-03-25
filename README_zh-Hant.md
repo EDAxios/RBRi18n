@@ -33,7 +33,7 @@
 
 ```ini
 [RBRi18n]
-Language=zh
+Language=zh-Hant
 
 ; 可選字型設定（顯示的是預設值）
 FontFamily=SimHei

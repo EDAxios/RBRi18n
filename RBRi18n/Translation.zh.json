@@ -1580,6 +1580,20 @@
   "FMOD Sound System": "FMOD音效系统",
   "Active (using FMOD Studio by Firelight Technologies Pty Ltd)": "激活",
   " Select Profile": "请选择车手档案",
+
+  "Lead Programmer: Szabolcs \"Falcon77\" Deak": "主程序员：Szabolcs \"Falcon77\" Deak",
+  "Tips & Ideas: Sebestyen \"Sebgutkopf\" Nagy": "建议与创意：Sebestyen \"Sebgutkopf\" Nagy",
+  "Other Tips & Support: HFRT & Rallysimfans.hu": "其他建议与支持：HFRT & Rallysimfans.hu",
+  "Other Programmer: Peter \"RPeti\" Retkes": "其他程序员：Peter \"RPeti\" Retkes",
+  "Other Programmer: Laszlo \"Lacka6\" Lorincz": "其他程序员：Laszlo \"Lacka6\" Lorincz",
+  "Other Programmer: Mika-n": "其他程序员：Mika-n",
+  "Tips & Ideas: Gabor \"Vasgabi\" Vas": "建议与创意：Gabor \"Vasgabi\" Vas",
+  "Special thanks to WorkerBee and the FMOD team": "特别感谢 WorkerBee 与 FMOD 团队",
+  "Special thanks to Mika-n for NGPCarMenu support": "特别感谢 Mika-n 提供 NGPCarMenu 支持",
+  "Special thanks to Tortue for creating the additional": "特别感谢 Tortue 创建额外的",
+  " advanced cut monitoring concept and tools": "高级切弯监控概念与工具",
+
+
   "Dolmen": "多尔门赛道",
   "El Condor": "神鹰赛道",
   "Fernet Branca 2015": "费尔内特布兰卡赛道 2015",
@@ -1622,12 +1636,6 @@
   "Swiss III Tarmac": "瑞士赛道 III 柏油",
   "Swiss IV Gravel": "瑞士赛道 IV 砂石",
   "Swiss Tarmac": "瑞士柏油赛道",
-  "Bayanbulak-Pegasus 2": "巴音布鲁克飞马赛道 2",
-  "Longyou 2024 SSS - 1 Lap L": "龙游 2024 超级短道 单圈 左",
-  "Longyou 2024 SSS - 1 Lap R": "龙游 2024 超级短道 单圈 右",
-  "Longyou 2024 SSS - 2 Laps L": "龙游 2024 超级短道 双圈 左",
-  "Longyou 2024 SSS - 2 Laps R": "龙游 2024 超级短道 双圈 右",
-  "Nujiang 72 Turns R": "怒江七十二道拐赛道 右",
   "Platres Hillclimb": "普拉特雷斯爬山赛",
   "Ypsonas Rallysprint": "伊普索纳斯冲刺赛道",
   "Banov": "巴诺夫赛道",
@@ -2096,5 +2104,19 @@
   "Prospect Ridge Snow": "前景岭赛道 雪地",
   "Red Bull Hill Climb": "红牛爬山赛",
   "Sardian": "萨尔迪安赛道",
-  "Sardian Night": "萨尔迪安夜间赛道"
+  "Sardian Night": "萨尔迪安夜间赛道",
+
+  
+  "82 Daily Stages R2-R3-A7-Rally4": "第82日赛 R2-R3-A7-Rally4 组别",
+  "82 Daily Stages R5-A8-B-R4": "第82日赛 R5-A8-B-R4 组别",
+  "82 Daily Stages WRC": "第82日赛 WRC 组别",
+  "83 Daily Stages R2-R3-A7-Rally4": "第83日赛 R2-R3-A7-Rally4 组别",
+  "83 Daily Stages R5-A8-B-R4": "第83日赛 R5-A8-B-R4 组别",
+  "83 Daily Stages WRC": "第83日赛 WRC 组别",
+  "84 Daily Stages R2-R3-A7-Rally4": "第84日赛 R2-R3-A7-Rally4 组别",
+  "84 Daily Stages R5-A8-B-R4": "第84日赛 R5-A8-B-R4 组别",
+  "84 Daily Stages WRC": "第84日赛 WRC 组别",
+  "85 Daily Stages R2-R3-A7-Rally4": "第85日赛 R2-R3-A7-Rally4 组别",
+  "85 Daily Stages R5-A8-B-R4": "第85日赛 R5-A8-B-R4 组别",
+  "85 Daily Stages WRC": "第85日赛 WRC 组别"
 }
