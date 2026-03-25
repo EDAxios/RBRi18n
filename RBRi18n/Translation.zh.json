@@ -635,6 +635,7 @@
   "lock": "锁止",
   "Max Center Diff. Torque": "最大中央差速器扭矩",
   "Max Front Diff. Torque": "最大前差速器扭矩",
+  "Max Rear Diff. Torque": "最大后差速器扭矩",
   "Front Diff. Preload Torque": "前差速器预载扭矩",
   "Rear Diff. Preload Torque": "后差速器预载扭矩",
   "Handbrake Release": "手刹释放",
