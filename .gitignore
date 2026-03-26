@@ -42,3 +42,6 @@ project_log.md
 Stages.json
 settings.local.json
 
+# Temporary tet json file
+Translation.zh_test.json
+
