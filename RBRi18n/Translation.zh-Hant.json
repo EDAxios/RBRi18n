@@ -1587,6 +1587,8 @@
   " Select Profile": "請選擇車手檔案",
   "Cheat Mode Enabled": "插件已啓用",
   "Profile MULLIGATAWNY successfully loaded!": "檔案 MULLIGATAWNY 成功加載！",
+  
+
   "Lead Programmer: Szabolcs \"Falcon77\" Deak": "主程序員：Szabolcs \"Falcon77\" Deak",
   "Tips & Ideas: Sebestyen \"Sebgutkopf\" Nagy": "建議與創意：Sebestyen \"Sebgutkopf\" Nagy",
   "Other Tips & Support: HFRT & Rallysimfans.hu": "其他建議與支持：HFRT & Rallysimfans.hu",
@@ -1599,6 +1601,8 @@
   "Special thanks to Tortue for creating the additional": "特別感謝 Tortue 創建額外的",
   " advanced cut monitoring concept and tools": "高級切彎監控概念與工具",
   "Shanyin": "山音",
+
+
   "Dolmen": "多爾門賽道",
   "El Condor": "神鷹賽道",
   "Fernet Branca 2015": "費爾內特布蘭卡賽道 2015",
@@ -1868,6 +1872,7 @@
   "Puy Du Lac": "皮杜拉克賽道",
   "SSS Alpes School Rally": "阿爾卑斯拉力學院超級短道",
   "Vieux Moulin-Perrancey": "老磨坊-佩朗賽賽道",
+
   "Chirdonhead": "奇登黑德賽道",
   "Chirdonhead II": "奇登黑德賽道 II",
   "Chirdonhead II Snow": "奇登黑德賽道 II 雪地",
@@ -1917,6 +1922,7 @@
   "RSI 1": "RSI賽道 I",
   "RSI 2": "RSI賽道 II",
   "RSI 3": "RSI賽道 III",
+
   "Castrezzato": "卡斯特雷扎託賽道",
   "Crastazza": "克拉斯塔扎賽道",
   "Fosso delle Dogane": "多加內溝賽道",
@@ -1940,6 +1946,7 @@
   "Tavia": "塔維亞賽道",
   "Torre Vecchia": "託雷維基亞賽道",
   "Valvestino II": "瓦爾維斯蒂諾賽道 II",
+
   "Akagi": "赤城賽道",
   "Akagi 2": "赤城賽道 II",
   "Monster HC": "怪獸爬山賽",
@@ -1967,6 +1974,7 @@
   "Ubunapa Kabula": "烏布納帕-卡布拉賽道",
   "Ubunapa Kabula II": "烏布納帕-卡布拉賽道 II",
   "Ulu Karagita": "烏盧卡拉吉塔賽道",
+
   "Lebanon Rally SSS RPM": "黎巴嫩拉力超級短道 RPM",
   "Verkiai 2010": "維爾凱賽道 2010",
   "Verkiai 2010 Super Special": "維爾凱超級短道 2010",
@@ -1974,19 +1982,23 @@
   "Versme RallyCross": "韋爾斯梅越野賽道",
   "Zaraso Salos - 2 Laps": "扎拉索羣島賽道 雙圈",
   "Zaraso Salos - 5 Laps": "扎拉索羣島賽道 五圈",
+
   "Bikernieki SSS": "比克爾涅基超級短道",
   "Lantosque - Luceram": "朗託斯克-呂塞拉姆賽道",
   "Lantosque - Luceram II": "朗託斯克-呂塞拉姆賽道 II",
   "Lucéram - Col Saint-Roch": "呂塞拉姆-聖羅克山口賽道",
   "Sainte - Agnes": "聖阿涅斯賽道",
+
   "Antaramanana": "安塔拉馬納納賽道",
   "Antaramanana II": "安塔拉馬納納賽道 II",
   "Miadamanjaka": "米亞達曼賈卡賽道",
   "Miadamanjaka II": "米亞達曼賈卡賽道 II",
   "TMF A 2021": "TMF A賽道 2021",
+
   "El Cubilete": "埃爾庫比萊特賽道",
   "Gestel I": "赫斯特爾賽道 I",
   "PTD RallySprint": "PTD衝刺賽道",
+
   "Inland Road 2022": "內陸公路賽道 2022",
   "Inland Road Reversed 2022": "內陸公路賽道 2022 反向",
   "Komokoriki Hill Road 2021": "科莫科裏基山路賽道 2021",
@@ -1996,6 +2008,7 @@
   "Te Parae Road": "特帕拉埃公路賽道",
   "Te Parae Road II": "特帕拉埃公路賽道 II",
   "Whaanga Coast 2025": "瓦昂加海岸賽道 2025",
+
   "FSO Zeran - Warsaw": "華沙澤蘭FSO賽道",
   "Jodlownik - Woliborz": "約德洛夫尼克-沃利博日賽道",
   "Kaczyce": "卡奇採賽道",
@@ -2025,6 +2038,7 @@
   "Portugal SS18 2007": "葡萄牙賽段 18 - 2007",
   "Serra d'Agua": "塞拉德阿瓜賽道",
   "Travanca do Monte": "特拉萬卡杜蒙特賽道",
+
   "Blyfoten": "布呂福滕賽道",
   "Dylanda": "迪蘭達賽道",
   "Dylanda II": "迪蘭達賽道 II",
@@ -2046,8 +2060,10 @@
   "Torsby shakedown": "托爾斯比試車賽道",
   "Vargassence": "瓦爾加森斯賽道",
   "Vargassence Mirror-Reverse": "瓦爾加森斯賽道 鏡像反向",
+
   "Drazgose 2014": "德拉日戈謝賽道 2014",
   "Sorica": "索裏察賽道",
+
   "Mlynky": "姆林基賽道",
   "Mlynky R": "姆林基賽道 反向",
   "Mlynky Snow": "姆林基賽道 雪地",
@@ -2067,7 +2083,9 @@
   "Uhorna II": "烏霍爾納賽道 II",
   "Uhorna snow": "烏霍爾納賽道 雪地",
   "Uhorna snow II": "烏霍爾納賽道 雪地 II",
+
   "The Legend": "傳奇賽道",
+
   "Azov I": "亞速賽道 I",
   "Azov II": "亞速賽道 II",
   "Livadija": "利瓦迪亞賽道",
@@ -2096,6 +2114,8 @@
   "Red Bull Hill Climb": "紅牛爬山賽",
   "Sardian": "薩爾迪安賽道",
   "Sardian Night": "薩爾迪安夜間賽道",
+
+  
   "1 Daily Stages R2-R3-A7-Rally4": "第1日賽 R2-R3-A7-Rally4 組別",
   "1 Daily Stages R5-A8-B-R4": "第1日賽 R5-A8-B-R4 組別",
   "1 Daily Stages WRC": "第1日賽 WRC 組別",
@@ -3194,6 +3214,7 @@
   "366 Daily Stages R2-R3-A7-Rally4": "第366日賽 R2-R3-A7-Rally4 組別",
   "366 Daily Stages R5-A8-B-R4": "第366日賽 R5-A8-B-R4 組別",
   "366 Daily Stages WRC": "第366日賽 WRC 組別",
+  
   "This next lesson is my favourite.": "下一課是我的最愛。你已經",
   "You've shown that you can handle": "證明了你能以相當不錯的速",
   "a rally car at some pretty decent": "度駕馭拉力賽車。這很好，",
@@ -3348,6 +3369,9 @@
   "surface is tarmac. You will find you": "相同，只不過路面變成了柏油",
   "have more stopping power and": "路。你會發現你擁有更強的制",
   "shorter braking distances.": "動力，剎車距離也更短。",
+  "Make sure you avoid locking the": "請務必避免車輪抱死。如果你",
+  "wheels. If you brake too hard you": "剎車過猛，很容易導致車輪抱",
+  "are liable to lock the wheels and": "死並失去對賽車的控制。",
   "lose control of the car. ": " ",
   "Until now all your exercises have": "到目前爲止，你所有的練習都",
   "taken place on gravel surfaces.": "是在砂石路面上進行的。現在",
