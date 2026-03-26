@@ -42,6 +42,13 @@ FontSizeBig=8
 FontSizeDebug=6
 FontSizeHeading=8
 FontSizeMenu=8
+
+; 可選選單顏色（十六進位 AARRGGBB 或 RRGGBB，顯示的是預設值）
+ColorBackground=FF323232
+ColorSelection=FFFF0000
+ColorIcon=FFC8C8C8
+ColorText=FFFFFFFF
+ColorHeading=FFFFFFFF
 ```
 
 ## 翻譯檔案

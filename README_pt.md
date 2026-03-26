@@ -44,6 +44,13 @@ FontSizeBig=8
 FontSizeDebug=6
 FontSizeHeading=8
 FontSizeMenu=8
+
+; Cores de menu opcionais (hex AARRGGBB ou RRGGBB, valores padrão exibidos)
+ColorBackground=FF323232
+ColorSelection=FFFF0000
+ColorIcon=FFC8C8C8
+ColorText=FFFFFFFF
+ColorHeading=FFFFFFFF
 ```
 
 ## Arquivos de Tradução

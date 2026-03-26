@@ -42,6 +42,13 @@ FontSizeBig=8
 FontSizeDebug=6
 FontSizeHeading=8
 FontSizeMenu=8
+
+; Необязательные цвета меню (hex AARRGGBB или RRGGBB, показаны значения по умолчанию)
+ColorBackground=FF323232
+ColorSelection=FFFF0000
+ColorIcon=FFC8C8C8
+ColorText=FFFFFFFF
+ColorHeading=FFFFFFFF
 ```
 
 ## Файлы перевода

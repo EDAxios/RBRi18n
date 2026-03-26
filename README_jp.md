@@ -42,6 +42,13 @@ FontSizeBig=8
 FontSizeDebug=6
 FontSizeHeading=8
 FontSizeMenu=8
+
+; オプションのメニュー色（16進数 AARRGGBB または RRGGBB、デフォルト値を表示）
+ColorBackground=FF323232
+ColorSelection=FFFF0000
+ColorIcon=FFC8C8C8
+ColorText=FFFFFFFF
+ColorHeading=FFFFFFFF
 ```
 
 ## 翻訳ファイル
