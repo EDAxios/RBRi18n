@@ -37,6 +37,7 @@ Thumbs.db
 
 # Local AI work log
 project_log.md
+RBR_Installation.md
 
 # not ready features
 Stages.json
@@ -44,4 +45,6 @@ settings.local.json
 
 # Temporary tet json file
 Translation.zh_test.json
+
+
 
