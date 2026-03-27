@@ -36,7 +36,7 @@ Oletuskieli on kiina. Määrittääksesi toisen kielen, lisää seuraava `Richar
 Language=fi
 
 ; Valinnaiset fonttiasetukset (oletusarvot näytetty)
-FontFamily=SimHei
+FontFamily=Arial Unicode MS
 FontSizeSmall=7
 FontSizeBig=8
 FontSizeDebug=6

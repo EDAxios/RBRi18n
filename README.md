@@ -38,7 +38,7 @@ The default language is Chinese. To configure a different language, add to `Rich
 Language=zh
 
 ; Optional font settings (defaults shown)
-FontFamily=SimHei
+FontFamily=Arial Unicode MS
 FontSizeSmall=7
 FontSizeBig=8
 FontSizeDebug=6

@@ -36,7 +36,7 @@
 Language=ru
 
 ; Необязательные настройки шрифта (показаны значения по умолчанию)
-FontFamily=SimHei
+FontFamily=Arial Unicode MS
 FontSizeSmall=7
 FontSizeBig=8
 FontSizeDebug=6

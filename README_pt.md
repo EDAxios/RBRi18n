@@ -38,7 +38,7 @@ O idioma padrão é o chinês. Para configurar um idioma diferente, adicione ao 
 Language=pt
 
 ; Configurações de fonte opcionais (valores padrão exibidos)
-FontFamily=SimHei
+FontFamily=Arial Unicode MS
 FontSizeSmall=7
 FontSizeBig=8
 FontSizeDebug=6
