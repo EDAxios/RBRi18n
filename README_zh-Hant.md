@@ -49,6 +49,10 @@ ColorSelection=FFFF0000
 ColorIcon=FFC8C8C8
 ColorText=FFFFFFFF
 ColorHeading=FFFFFFFF
+
+; 停用特定翻譯類別（逗號分隔）
+; 可用：cars, stages, menu, options, tuning, rally, weather, tutorial, dailystages, misc
+;DisableCategories=tutorial,dailystages
 ```
 
 ## 翻譯檔案
